@@ -72,11 +72,12 @@ class YPCropView: UIView {
     }
     
     private func applyStyle() {
-        backgroundColor = .ypSystemBackground
+        backgroundColor = YPConfig.colors.cropBackgroundColor
         clipsToBounds = true
         imageView.style { i in
             i.isUserInteractionEnabled = true
             i.isMultipleTouchEnabled = true
+            i.backgroundColor = backgroundColor
         }
         topCurtain.style(curtainStyle)
         cropArea.style { v in
@@ -91,7 +92,7 @@ class YPCropView: UIView {
     }
     
     func curtainStyle(v: UIView) {
-        v.backgroundColor = UIColor.ypSystemBackground.withAlphaComponent(0.7)
+        v.backgroundColor = YPConfig.colors.cropCurtainBackgroundColor.withAlphaComponent(0.7)
         v.isUserInteractionEnabled = false
     }
 }

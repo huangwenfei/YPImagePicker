@@ -269,6 +269,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(close))
+        navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.cancelTintColor
         switch mode {
         case .library:
             setTitleViewWithTitle(aTitle: libraryVC?.title ?? "")
@@ -304,7 +305,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     // When pressing "Next"
     @objc
     func done() {
-        guard let libraryVC = libraryVC else { print("⚠️ YPPickerVC >>> YPLibraryVC deallocated"); return }
+        guard let libraryVC = libraryVC else { YPLog.print("⚠️ YPPickerVC >>> YPLibraryVC deallocated") ; return }
         
         if mode == .library {
             libraryVC.doAfterPermissionCheck { [weak self] in

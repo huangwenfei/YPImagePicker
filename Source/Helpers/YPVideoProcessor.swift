@@ -30,7 +30,7 @@ class YPVideoProcessor {
                 .default
                 .urls(for: .documentDirectory,
                       in: .userDomainMask).first else {
-                        print("YPVideoProcessor -> Can't get the documents directory URL")
+                        YPLog.print("YPVideoProcessor -> Can't get the documents directory URL")
                 return URL(fileURLWithPath: "Error")
             }
             outputURL = documentsURL.appendingPathComponent("\(fileName).\(YPConfig.video.fileType.fileExtension)")
@@ -41,7 +41,7 @@ class YPVideoProcessor {
             do {
                 try fileManager.removeItem(atPath: outputURL.path)
             } catch {
-                print("YPVideoProcessor -> Can't remove the file for some reason.")
+                YPLog.print("YPVideoProcessor -> Can't remove the file for some reason.")
             }
         }
         
@@ -103,7 +103,7 @@ class YPVideoProcessor {
                 })
                 return
             } else if exporter?.status == .failed {
-                print("YPVideoProcessor -> Export of the video failed. Reason: \(String(describing: exporter?.error))")
+                YPLog.print("YPVideoProcessor -> Export of the video failed. Reason: \(String(describing: exporter?.error))")
             }
             completion(nil)
             return

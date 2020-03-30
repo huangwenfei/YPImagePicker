@@ -107,15 +107,18 @@ override open func viewDidLoad() {
                 }
                 
                 func showCropVC(photo: YPMediaPhoto, completion: @escaping (_ aphoto: YPMediaPhoto) -> Void) {
-                    if case let YPCropType.rectangle(ratio) = YPConfig.showsCrop {
-                        let cropVC = YPCropVC(image: photo.image, ratio: ratio)
+                    var cropVC: YPCropVCProtocol? = nil
+                    switch YPConfig.showsCrop {
+                    case .none: completion(photo)
+                    case let .custom(cropper): cropVC = cropper.init(image: photo.image)
+                    case let .rectangle(ratio): cropVC = YPCropVC(image: photo.image, ratio: ratio)
+                    }
+                    if let cropVC = cropVC {
                         cropVC.didFinishCropping = { croppedImage in
                             photo.modifiedImage = croppedImage
                             completion(photo)
                         }
                         self?.pushViewController(cropVC, animated: true)
-                    } else {
-                        completion(photo)
                     }
                 }
                 
@@ -148,7 +151,7 @@ override open func viewDidLoad() {
     }
     
     deinit {
-        print("Picker deinited 👍")
+        YPLog.print("Picker deinited 👍")
     }
     
     private func setupLoadingView() {

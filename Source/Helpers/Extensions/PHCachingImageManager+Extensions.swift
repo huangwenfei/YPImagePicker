@@ -88,7 +88,7 @@ extension PHCachingImageManager {
         options.deliveryMode = .opportunistic // Get 2 results, one low res quickly and the high res one later.
         requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { result, info in
             guard let image = result else {
-                print("No Result 🛑")
+                YPLog.print("No Result 🛑")
                 return
             }
             DispatchQueue.main.async {

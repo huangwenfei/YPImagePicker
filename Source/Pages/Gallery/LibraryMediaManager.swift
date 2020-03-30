@@ -71,7 +71,7 @@ class LibraryMediaManager {
         videosOptions.deliveryMode = .highQualityFormat
         imageManager?.requestAVAsset(forVideo: videoAsset, options: videosOptions) { asset, _, _ in
             do {
-                guard let asset = asset else { print("⚠️ PHCachingImageManager >>> Don't have the asset"); return }
+                guard let asset = asset else { YPLog.print("⚠️ PHCachingImageManager >>> Don't have the asset"); return }
                 
                 let assetComposition = AVMutableComposition()
                 let trackTimeRange = CMTimeRangeMake(start: CMTime.zero, duration: asset.duration)
@@ -82,7 +82,7 @@ class LibraryMediaManager {
                     let videoCompositionTrack = assetComposition
                         .addMutableTrack(withMediaType: .video,
                                          preferredTrackID: kCMPersistentTrackID_Invalid) else {
-                                            print("⚠️ PHCachingImageManager >>> Problems with video track")
+                                            YPLog.print("⚠️ PHCachingImageManager >>> Problems with video track")
                                             return
                                             
                 }
@@ -141,12 +141,12 @@ class LibraryMediaManager {
                             }
                         } else {
                             let error = exportSession?.error
-                            print("error exporting video \(String(describing: error))")
+                            YPLog.print("error exporting video \(String(describing: error))")
                         }
                     }
                 })
             } catch let error {
-                print("⚠️ PHCachingImageManager >>> \(error)")
+                YPLog.print("⚠️ PHCachingImageManager >>> \(error)")
             }
         }
     }

@@ -81,6 +81,7 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
                                                                style: .plain,
                                                                target: self,
                                                                action: #selector(cancel))
+            navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.cancelTintColor
         }
         setupRightBarButtonItem()
     }
@@ -116,7 +117,7 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
     // MARK: - Top buttons
 
     @objc public func save() {
-        guard let didSave = didSave else { return print("Don't have saveCallback") }
+        guard let didSave = didSave else { return YPLog.print("Don't have saveCallback") }
         navigationItem.rightBarButtonItem = YPLoaders.defaultLoader
 
         do {
@@ -141,7 +142,7 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
                 }
             }
         } catch let error {
-            print("💩 \(error)")
+            YPLog.print("💩 \(error)")
         }
     }
     

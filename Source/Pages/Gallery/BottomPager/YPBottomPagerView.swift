@@ -16,7 +16,7 @@ final class YPBottomPagerView: UIView {
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = .offWhiteOrBlack
+        backgroundColor = YPConfig.colors.bottomMenuBackgroundColor
         
         sv(
             scrollView,
@@ -47,5 +47,6 @@ final class YPBottomPagerView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.scrollsToTop = false
         scrollView.bounces = false
+        scrollView.backgroundColor = YPConfig.colors.bottomMenuScrollViewBackgroundColor
     }
 }

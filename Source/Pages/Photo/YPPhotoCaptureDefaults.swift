@@ -133,7 +133,7 @@ extension YPPhotoCapture {
             device.videoZoomFactor = max(minAvailableVideoZoomFactor, min(desiredZoomFactor, maxAvailableVideoZoomFactor))
         }
         catch let error {
-           print("💩 \(error)")
+           YPLog.print("💩 \(error)")
         }
     }
     

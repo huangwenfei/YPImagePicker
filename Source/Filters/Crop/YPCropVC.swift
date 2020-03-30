@@ -8,12 +8,18 @@
 
 import UIKit
 
+public protocol YPCropVCProtocol where Self: UIViewController {
+    var didFinishCropping: ((UIImage) -> Void)? { set get }
+    init(image: UIImage)
+}
+
 public enum YPCropType {
     case none
+    case custom(cropper: YPCropVCProtocol.Type)
     case rectangle(ratio: Double)
 }
 
-class YPCropVC: UIViewController {
+class YPCropVC: UIViewController, YPCropVCProtocol {
     
     public var didFinishCropping: ((UIImage) -> Void)?
     
@@ -25,6 +31,10 @@ class YPCropVC: UIViewController {
     
     private let v: YPCropView
     override func loadView() { view = v }
+    
+    required convenience init(image: UIImage) {
+        self.init(image: image, ratio: 1)
+    }
     
     required init(image: UIImage, ratio: Double) {
         v = YPCropView(image: image, ratio: ratio)
@@ -48,7 +58,7 @@ class YPCropVC: UIViewController {
                                            style: .plain,
                                            target: self,
                                            action: #selector(cancel))
-        cancelButton.tintColor = .ypLabel
+        cancelButton.tintColor = YPConfig.colors.cancelTintColor
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
@@ -56,6 +66,8 @@ class YPCropVC: UIViewController {
                                            style: .plain,
                                            target: self,
                                            action: #selector(done))
+        saveButton.tintColor = YPConfig.colors.tintColor
+        
         v.toolbar.items = [cancelButton, flexibleSpace, saveButton]
     }
     

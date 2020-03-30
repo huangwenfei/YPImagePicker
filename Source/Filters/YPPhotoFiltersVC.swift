@@ -84,6 +84,7 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
                                                                style: .plain,
                                                                target: self,
                                                                action: #selector(cancel))
+            navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.cancelTintColor
         }
         setupRightBarButton()
         
@@ -145,7 +146,7 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
     
     @objc
     func save() {
-        guard let didSave = didSave else { return print("Don't have saveCallback") }
+        guard let didSave = didSave else { return YPLog.print("Don't have saveCallback") }
         self.navigationItem.rightBarButtonItem = YPLoaders.defaultLoader
 
         DispatchQueue.global().async {

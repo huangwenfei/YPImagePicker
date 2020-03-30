@@ -41,7 +41,10 @@ class YPAlbumCell: UITableViewCell {
         thumbnail.contentMode = .scaleAspectFill
         thumbnail.clipsToBounds = true
         
-        title.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
-        numberOfItems.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+        title.font = YPConfig.fonts.albumTitleFont
+        numberOfItems.font = YPConfig.fonts.albumNumberOfItemsTextFont
+        
+        title.textColor = YPConfig.colors.albumTitleColor
+        numberOfItems.textColor = YPConfig.colors.albumNumberOfItemsColor
     }
 }
