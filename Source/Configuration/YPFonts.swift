@@ -29,8 +29,8 @@ public struct YPFonts {
     // MARK: - Gallery Albums
     
     /// Title color in the albums view cell that pops up in the library.
-    public var albumCellTitleFont: UIFont = .systemFont(ofSize: 16, weight: .regular)
+    public var albumTitleFont: UIFont = .systemFont(ofSize: 16, weight: .regular)
     /// Subtitle colors in the albums view cell that pop up in the library.
-    public var albumCellNumberOfItemsTextFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
+    public var albumNumberOfItemsTextFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
     
 }

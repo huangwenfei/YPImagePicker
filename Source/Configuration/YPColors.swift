@@ -67,10 +67,10 @@ public struct YPColors {
     public var albumSpinnerColor: UIColor?
     
     /// Title color in the albums view cell that pops up in the library.
-    public var albumCellTitleColor: UIColor = .ypLabel
+    public var albumTitleColor: UIColor = .ypLabel
     
     /// Subtitle colors in the albums view cell that pop up in the library.
-    public var albumCellNumberOfItemsColor: UIColor = .ypLabel
+    public var albumNumberOfItemsColor: UIColor = .ypLabel
     
     /// - Tag: Gallery Bottom Pager
     /// A color of bottom menu.
