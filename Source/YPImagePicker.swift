@@ -109,9 +109,16 @@ override open func viewDidLoad() {
                 func showCropVC(photo: YPMediaPhoto, completion: @escaping (_ aphoto: YPMediaPhoto) -> Void) {
                     var cropVC: YPCropVCProtocol? = nil
                     switch YPConfig.showsCrop {
-                    case .none: completion(photo)
-                    case let .custom(cropper): cropVC = cropper.init(image: photo.image) ; cropVC?.prepare()
-                    case let .rectangle(ratio): cropVC = YPCropVC(image: photo.image, ratio: ratio)
+                    case .none:
+                        completion(photo)
+                        
+                    case let .custom(cropper, configuration):
+                        cropVC = cropper.init(image: photo.image)
+                        cropVC?.prepare(configuration: configuration)
+                        
+                    case let .rectangle(ratio):
+                        cropVC = YPCropVC(image: photo.image, ratio: ratio)
+                        
                     }
                     if let cropVC = cropVC {
                         cropVC.didFinishCropping = { croppedImage in
