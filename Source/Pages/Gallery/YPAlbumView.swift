@@ -29,5 +29,6 @@ class YPAlbumView: UIView {
         if let color = YPConfig.colors.albumSpinnerColor { spinner.color = color }
         
         backgroundColor = YPConfig.colors.albumViewBackgroundColor
+        tableView.backgroundColor = backgroundColor
     }
 }
