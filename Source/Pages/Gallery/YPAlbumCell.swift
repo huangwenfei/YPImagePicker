@@ -47,6 +47,6 @@ class YPAlbumCell: UITableViewCell {
         title.textColor = YPConfig.colors.albumCellTitleColor
         numberOfItems.textColor = YPConfig.colors.albumCellNumberOfItemsColor
         
-        contentView.backgroundColor = YPConfig.colors.albumCellBackgroundColor
+        contentView.backgroundColor = YPConfig.colors.albumViewBackgroundColor
     }
 }

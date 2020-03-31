@@ -66,9 +66,6 @@ public struct YPColors {
     /// Spinner color in the albums view that pops up in the library.
     public var albumSpinnerColor: UIColor?
     
-    /// A color for background in album cell.
-    public var albumCellBackgroundColor: UIColor = .ypSystemBackground
-    
     /// Title color in the albums view cell that pops up in the library.
     public var albumCellTitleColor: UIColor = .ypLabel
     
