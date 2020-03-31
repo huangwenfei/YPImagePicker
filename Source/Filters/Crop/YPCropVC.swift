@@ -11,15 +11,20 @@ import UIKit
 public protocol YPCropVCProtocol where Self: UIViewController {
     var didFinishCropping: ((UIImage) -> Void)? { set get }
     init(image: UIImage)
+    func prepare()
+}
+
+extension YPCropVCProtocol {
+    public func prepare() {  }
 }
 
 public enum YPCropType {
     case none
-    case custom(cropper: YPCropVCProtocol.Type)
+    case custom(corpper: YPCropVCProtocol.Type)
     case rectangle(ratio: Double)
 }
 
-class YPCropVC: UIViewController, YPCropVCProtocol {
+final class YPCropVC: UIViewController, YPCropVCProtocol {
     
     public var didFinishCropping: ((UIImage) -> Void)?
     

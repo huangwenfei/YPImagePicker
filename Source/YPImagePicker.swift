@@ -110,7 +110,7 @@ override open func viewDidLoad() {
                     var cropVC: YPCropVCProtocol? = nil
                     switch YPConfig.showsCrop {
                     case .none: completion(photo)
-                    case let .custom(cropper): cropVC = cropper.init(image: photo.image)
+                    case let .custom(cropper): cropVC = cropper.init(image: photo.image) ; cropVC?.setup()
                     case let .rectangle(ratio): cropVC = YPCropVC(image: photo.image, ratio: ratio)
                     }
                     if let cropVC = cropVC {
