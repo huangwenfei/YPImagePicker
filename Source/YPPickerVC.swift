@@ -281,16 +281,33 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             
             // Disable Next Button until minNumberOfItems is reached.
             navigationItem.rightBarButtonItem?.isEnabled = libraryVC!.selection.count >= YPConfig.library.minNumberOfItems
+            
+            hideNavigationBarBackground(isHide: false)
 
         case .camera:
             navigationItem.titleView = nil
             title = cameraVC?.title
             navigationItem.rightBarButtonItem = nil
+            hideNavigationBarBackground(isHide: true)
+            
         case .video:
             navigationItem.titleView = nil
             title = videoVC?.title
             navigationItem.rightBarButtonItem = nil
+            hideNavigationBarBackground(isHide: true)
         }
+    }
+    
+    func hideNavigationBarBackground(isHide: Bool) {
+        guard YPConfig.hidesNavigationBarBackground else { return }
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: isHide ? .curveEaseOut : .curveEaseIn,
+            animations: {
+                self.navigationController?.navigationBar.subviews.first?.alpha = isHide ? 0 : 1
+            }
+        )
     }
     
     @objc

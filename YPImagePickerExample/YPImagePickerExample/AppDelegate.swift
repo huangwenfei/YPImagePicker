@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = ExampleViewController()
         window?.makeKeyAndVisible()
+        // NO Working
+//        UINavigationBar.appearance().backgroundColor = .clear
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .compact)
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .defaultPrompt)
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .compactPrompt)
         return true
     }
 }
