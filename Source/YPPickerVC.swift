@@ -25,6 +25,9 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         return (shouldHideStatusBar || initialStatusBarHidden) && YPConfig.hidesStatusBar
     }
     
+    /// Tool bar for photo and video.
+    var topToolBar: UINavigationBar? = nil
+    
     /// Private callbacks to YPImagePicker
     public var didClose:(() -> Void)?
     public var didSelectItems: (([YPMediaItem]) -> Void)?
@@ -46,6 +49,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
+//        navigationController?.navigationBar.alpha = YPConfig.hidesNavigationBarBackground ? 0 : 1
         view.backgroundColor = YPConfig.colors.safeAreaBackgroundColor
         
         delegate = self
@@ -265,23 +269,11 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     func updateUI() {
         // Update Nav Bar state.
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(close))
-        navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.cancelTintColor
+        navigationItem.leftBarButtonItem = buildBarItem(isCancle: true)
         switch mode {
         case .library:
             setTitleViewWithTitle(aTitle: libraryVC?.title ?? "")
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
-                                                                style: .done,
-                                                                target: self,
-                                                                action: #selector(done))
-            navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
-            
-            // Disable Next Button until minNumberOfItems is reached.
-            navigationItem.rightBarButtonItem?.isEnabled = libraryVC!.selection.count >= YPConfig.library.minNumberOfItems
-            
+            navigationItem.rightBarButtonItem = buildBarItem(isCancle: false)
             hideNavigationBarBackground(isHide: false)
 
         case .camera:
@@ -298,14 +290,40 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         }
     }
     
-    func hideNavigationBarBackground(isHide: Bool) {
+    private func buildBarItem(isCancle: Bool) -> UIBarButtonItem {
+        let title = isCancle ? YPConfig.wordings.cancel : YPConfig.wordings.next
+        let selector = isCancle ? #selector(close) : #selector(done)
+        let item = UIBarButtonItem(title: title,
+                                   style: isCancle ? .plain : .done,
+                                   target: self,
+                                   action: selector)
+        let color = isCancle ? YPConfig.colors.cancelTintColor : YPConfig.colors.tintColor
+        item.tintColor = color
+        if !isCancle {
+            item.isEnabled = libraryVC!.selection.count >= YPConfig.library.minNumberOfItems
+        }
+        return item
+    }
+    
+    private func hideNavigationBarBackground(isHide: Bool) {
         guard YPConfig.hidesNavigationBarBackground else { return }
+        if isHide, let bar = navigationController?.navigationBar, topToolBar == nil {
+            topToolBar = UINavigationBar(frame: bar.frame)
+            topToolBar?.backgroundColor = nil
+            topToolBar?.setBackgroundImage(UIImage(), for: .default)
+            let item = UINavigationItem()
+            item.leftBarButtonItem = buildBarItem(isCancle: true)
+            topToolBar?.items = [item]
+            view.addSubview(topToolBar!)
+        }
+        topToolBar?.isHidden = !isHide
+        let bar = navigationController?.navigationBar
         UIView.animate(
             withDuration: 0.2,
             delay: 0,
             options: isHide ? .curveEaseOut : .curveEaseIn,
             animations: {
-                self.navigationController?.navigationBar.subviews.first?.alpha = isHide ? 0 : 1
+                bar?.isHidden = isHide
             }
         )
     }

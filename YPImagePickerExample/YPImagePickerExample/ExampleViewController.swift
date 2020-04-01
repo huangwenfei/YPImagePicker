@@ -107,7 +107,7 @@ class ExampleViewController: UIViewController {
 
         /* Defines which screen is shown at launch. Video mode will only work if `showsVideo = true`.
            Default value is `.photo` */
-        config.startOnScreen = .library
+        config.startOnScreen = .photo
 
         /* Defines which screens are shown at launch, and their order.
            Default value is `[.library, .photo]` */

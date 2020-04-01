@@ -91,7 +91,9 @@ class YPCameraView: UIView, UIGestureRecognizerDelegate {
         flipButton.Bottom == previewViewContainer.Bottom - 15
         
         timeElapsedLabel-(15+sideMargin)-|
-        timeElapsedLabel.Top == previewViewContainer.Top + 15
+        let statusBarH = UIApplication.shared.statusBarFrame.height
+        let isHideNaviBarBg = YPConfig.hidesNavigationBarBackground
+        timeElapsedLabel.Top == previewViewContainer.Top + 15 + (isHideNaviBarBg ? statusBarH : 0)
         
         shotButton.centerVertically()
         shotButton.size(84).centerHorizontally()
