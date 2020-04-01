@@ -8,25 +8,15 @@
 
 import UIKit
 
-public protocol YPCropVCProtocol where Self: UIViewController {
-    var didFinishCropping: ((UIImage) -> Void)? { set get }
-    init(image: UIImage)
-    func prepare(configuration: Any)
-}
-
-extension YPCropVCProtocol {
-    public func prepare(configuration: Any) {  }
-}
-
 public enum YPCropType {
     case none
-    case custom(corpper: YPCropVCProtocol.Type, configuration: Any)
+    case custom(corpper: YPCropVCProtocol.Type, configuration: Any?)
     case rectangle(ratio: Double)
 }
 
-class YPCropVC: UIViewController, YPCropVCProtocol {
+class YPCropVC: UIViewController , YPCropVCProtocol {
     
-    public var didFinishCropping: ((UIImage) -> Void)?
+    var didFinishCropping: ((UIImage) -> Void)?
     
     override var prefersStatusBarHidden: Bool { return YPConfig.hidesStatusBar }
     
@@ -37,7 +27,7 @@ class YPCropVC: UIViewController, YPCropVCProtocol {
     private let v: YPCropView
     override func loadView() { view = v }
     
-    required convenience init(image: UIImage) {
+    required convenience init(image: UIImage, configuration: Any?) {
         self.init(image: image, ratio: 1)
     }
     
@@ -62,15 +52,7 @@ class YPCropVC: UIViewController, YPCropVCProtocol {
         super.viewWillAppear(animated)
         guard YPConfig.hidesNavigationBarBackground else { return }
         let isHide = !YPConfig.hidesNavigationBarBackground
-        let bar = navigationController?.navigationBar
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0,
-            options: isHide ? .curveEaseOut : .curveEaseIn,
-            animations: {
-                bar?.isHidden = isHide
-            }
-        )
+        navigationController?.setNavigationBarHidden(isHide, animated: true)
     }
     
     func setupToolbar() {
@@ -79,15 +61,15 @@ class YPCropVC: UIViewController, YPCropVCProtocol {
                                            target: self,
                                            action: #selector(cancel))
         cancelButton.tintColor = YPConfig.colors.cancelTintColor
-        
+
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
+
         let saveButton = UIBarButtonItem(title: YPConfig.wordings.save,
                                            style: .plain,
                                            target: self,
                                            action: #selector(done))
         saveButton.tintColor = YPConfig.colors.tintColor
-        
+
         v.toolbar.items = [cancelButton, flexibleSpace, saveButton]
     }
     

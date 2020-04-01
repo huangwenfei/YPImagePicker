@@ -317,15 +317,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             view.addSubview(topToolBar!)
         }
         topToolBar?.isHidden = !isHide
-        let bar = navigationController?.navigationBar
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0,
-            options: isHide ? .curveEaseOut : .curveEaseIn,
-            animations: {
-                bar?.isHidden = isHide
-            }
-        )
+        navigationController?.setNavigationBarHidden(isHide, animated: true)
     }
     
     @objc

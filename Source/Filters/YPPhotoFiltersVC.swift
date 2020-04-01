@@ -104,15 +104,7 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
         super.viewWillAppear(animated)
         guard YPConfig.hidesNavigationBarBackground else { return }
         let isHide = !YPConfig.hidesNavigationBarBackground
-        let bar = navigationController?.navigationBar
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0,
-            options: isHide ? .curveEaseOut : .curveEaseIn,
-            animations: {
-                bar?.isHidden = isHide
-            }
-        )
+        navigationController?.setNavigationBarHidden(isHide, animated: true)
     }
     
     // MARK: Setup - ⚙️

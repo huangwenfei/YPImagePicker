@@ -111,14 +111,10 @@ override open func viewDidLoad() {
                     switch YPConfig.showsCrop {
                     case .none:
                         completion(photo)
-                        
                     case let .custom(cropper, configuration):
-                        cropVC = cropper.init(image: photo.image)
-                        cropVC?.prepare(configuration: configuration)
-                        
+                        cropVC = cropper.init(image: photo.image, configuration: configuration)
                     case let .rectangle(ratio):
                         cropVC = YPCropVC(image: photo.image, ratio: ratio)
-                        
                     }
                     if let cropVC = cropVC {
                         cropVC.didFinishCropping = { croppedImage in
