@@ -89,6 +89,11 @@ public struct YPImagePickerConfiguration {
     
     /// Defines if the bottom bar should be hidden when showing the picker. Default is false.
     public var hidesBottomBar = false
+    
+    /// Defines if the bottom bar should be hidden when showing the photo or video screen.
+    /// This setting only vaild when `hidesBottomBar` and `onlySquareImagesFromCamera` is set to false.
+    /// Default is false.
+    public var hidesBottomBarWhenSelectedCamareScreen = false
 
     /// Defines the preferredStatusBarAppearance
     public var preferredStatusBarStyle = UIStatusBarStyle.default

@@ -19,7 +19,7 @@ class YPCameraView: UIView, UIGestureRecognizerDelegate {
     let flashButton = UIButton()
     let timeElapsedLabel = UILabel()
     let progressBar = UIProgressView()
-
+    
     convenience init(overlayView: UIView? = nil) {
         self.init(frame: .zero)
         
@@ -85,18 +85,26 @@ class YPCameraView: UIView, UIGestureRecognizerDelegate {
         overlayView?.followEdges(previewViewContainer)
 
         |-(15+sideMargin)-flashButton.size(42)
-        flashButton.Bottom == previewViewContainer.Bottom - 15
-
         flipButton.size(42)-(15+sideMargin)-|
-        flipButton.Bottom == previewViewContainer.Bottom - 15
         
         timeElapsedLabel-(15+sideMargin)-|
-        let statusBarH = UIApplication.shared.statusBarFrame.height
+        let statusBarH = YPStatusBar.height()
         let isHideNaviBarBg = YPConfig.hidesNavigationBarBackground
         timeElapsedLabel.Top == previewViewContainer.Top + 15 + (isHideNaviBarBg ? statusBarH : 0)
         
         shotButton.centerVertically()
         shotButton.size(84).centerHorizontally()
+        
+        var fix: CGFloat = 0
+        if !YPConfig.hidesBottomBar
+            && !YPConfig.onlySquareImagesFromCamera
+            && YPConfig.hidesBottomBarWhenSelectedCamareScreen {
+            
+            fix = YPHomeIndicator.height()
+        }
+        
+        flashButton.Bottom == (previewViewContainer.Bottom - 15 - fix)
+        flipButton.Bottom == (previewViewContainer.Bottom - 15 - fix)
 
         // Style
         backgroundColor = YPConfig.colors.photoVideoScreenBackgroundColor

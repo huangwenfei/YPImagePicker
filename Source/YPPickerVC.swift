@@ -275,18 +275,21 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             setTitleViewWithTitle(aTitle: libraryVC?.title ?? "")
             navigationItem.rightBarButtonItem = buildBarItem(isCancle: false)
             hideNavigationBarBackground(isHide: false)
+            hideBottomBar(isHide: false)
 
         case .camera:
             navigationItem.titleView = nil
             title = cameraVC?.title
             navigationItem.rightBarButtonItem = nil
             hideNavigationBarBackground(isHide: true)
+            hideBottomBar(isHide: true)
             
         case .video:
             navigationItem.titleView = nil
             title = videoVC?.title
             navigationItem.rightBarButtonItem = nil
             hideNavigationBarBackground(isHide: true)
+            hideBottomBar(isHide: true)
         }
     }
     
@@ -318,6 +321,13 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         }
         topToolBar?.isHidden = !isHide
         navigationController?.setNavigationBarHidden(isHide, animated: true)
+    }
+    
+    private func hideBottomBar(isHide: Bool) {
+        guard !YPConfig.hidesBottomBar else { return }
+        guard !YPConfig.onlySquareImagesFromCamera else { return }
+        guard YPConfig.hidesBottomBarWhenSelectedCamareScreen else { return }
+        v.hideHeader(isHide: isHide)
     }
     
     @objc

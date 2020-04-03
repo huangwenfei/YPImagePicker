@@ -10,6 +10,7 @@
 		8317B06D2431CF7500B3E6A1 /* YPFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317B06C2431CF7500B3E6A1 /* YPFonts.swift */; };
 		83A341372434CD9D00A37DCD /* YPCropVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A341362434CD9D00A37DCD /* YPCropVCProtocol.swift */; };
 		83BD3340243258C700240896 /* YPLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD333F243258C700240896 /* YPLog.swift */; };
+		83DD9F7A24365DD2009C82AD /* YPDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD9F7924365DD2009C82AD /* YPDevice.swift */; };
 		8458057421819B95004F241C /* YPImagePickerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99C6D6991F1FB5C100711DB2 /* YPImagePickerLocalizable.strings */; };
 		99019E4C2018CCD6007325C2 /* YPBottomPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E4B2018CCD6007325C2 /* YPBottomPagerView.swift */; };
 		99019E4E2018CD31007325C2 /* YPPagerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E4D2018CD31007325C2 /* YPPagerMenu.swift */; };
@@ -110,6 +111,7 @@
 		8317B06C2431CF7500B3E6A1 /* YPFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPFonts.swift; sourceTree = "<group>"; };
 		83A341362434CD9D00A37DCD /* YPCropVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPCropVCProtocol.swift; sourceTree = "<group>"; };
 		83BD333F243258C700240896 /* YPLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPLog.swift; sourceTree = "<group>"; };
+		83DD9F7924365DD2009C82AD /* YPDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDevice.swift; sourceTree = "<group>"; };
 		99019E4B2018CCD6007325C2 /* YPBottomPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPBottomPagerView.swift; sourceTree = "<group>"; };
 		99019E4D2018CD31007325C2 /* YPPagerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPagerMenu.swift; sourceTree = "<group>"; };
 		99019E502018CDED007325C2 /* YPImageSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPImageSize.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				EB94F28D208E3A140049F523 /* YPLoaders.swift */,
 				EB05F6E6214A7191002040AA /* YPVideoProcessor.swift */,
 				AA69BCF122E601D100FBB925 /* YPDeviceOrientationHelper.swift */,
+				83DD9F7924365DD2009C82AD /* YPDevice.swift */,
 				83BD333F243258C700240896 /* YPLog.swift */,
 			);
 			path = Helpers;
@@ -659,6 +662,7 @@
 				99A3C91220319231008D7E23 /* YPCropVC.swift in Sources */,
 				EB584BFB207B870F00265B38 /* YPSelectionsGalleryVC.swift in Sources */,
 				99019E512018CDED007325C2 /* YPImageSize.swift in Sources */,
+				83DD9F7A24365DD2009C82AD /* YPDevice.swift in Sources */,
 				99CF6D25201B727900487F77 /* YPLibraryVC+PanGesture.swift in Sources */,
 				99CF6D27201B739600487F77 /* YPAlerts.swift in Sources */,
 				99C6D6CF1F1FB5C100711DB2 /* YPPickerVC.swift in Sources */,
