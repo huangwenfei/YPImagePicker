@@ -48,7 +48,9 @@ final class YPBottomPagerView: UIView {
     
     private func setHeaderBottom() {
         if #available(iOS 11.0, *) {
-            header.bottom(-(safeAreaInsets.bottom) + YPHomeIndicator.height())
+            let offset = -(safeAreaInsets.bottom) + YPHomeIndicator.height()
+            let value = YPConfig.hidesBottomBar ? 0 : offset
+            header.bottom(value)
         } else {
             header.bottom(0)
         }

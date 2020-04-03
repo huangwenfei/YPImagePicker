@@ -95,14 +95,7 @@ class YPCameraView: UIView, UIGestureRecognizerDelegate {
         shotButton.centerVertically()
         shotButton.size(84).centerHorizontally()
         
-        var fix: CGFloat = 0
-        if !YPConfig.hidesBottomBar
-            && !YPConfig.onlySquareImagesFromCamera
-            && YPConfig.hidesBottomBarWhenSelectedCamareScreen {
-            
-            fix = YPHomeIndicator.height()
-        }
-        
+        let fix = YPConfig.onlySquareImagesFromCamera ? 0 : YPHomeIndicator.height()
         flashButton.Bottom == (previewViewContainer.Bottom - 15 - fix)
         flipButton.Bottom == (previewViewContainer.Bottom - 15 - fix)
 
